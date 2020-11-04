@@ -21,7 +21,23 @@ export class Graphics {
   private saveFilename = "untitled";
 
   private compression = "jpeg";
+  
+  private depth = 32;
+  
+  private contrast = "-constrast";
+  
+  private dither = "+dither";
 
+  private colors = 2;
+  
+  private colorspace = "gray";
+  
+  private contrastStretch = 0;
+  
+  private fuzz = 25%;
+  
+  private opaque = "#373737";
+  
   private gm: gm.SubClass = gm.subClass({ imageMagick: false });
 
   public generateValidFilename(page?: number): string {
@@ -38,6 +54,14 @@ export class Graphics {
       .resize(this.width, this.height, "!")
       .quality(this.quality)
       .compress(this.compression)
+      .depth(this.depth)
+      .contrast(this.contrast)
+      .dither(this.dither)
+      .colors(this.colors)
+      .colorspace(this.colorspace)
+      .contrastStretch(this.contrastStretch)
+      .fuzz(this.fuzz)
+      .opaque(this.opaque)
   }
 
   public toBase64(stream: fs.ReadStream, page?: number): Promise<ToBase64Response> {
@@ -158,6 +182,54 @@ export class Graphics {
     return this;
   }
 
+  public setDepth(depth: number): Graphics {
+    this.depth = depth;
+
+    return this;
+  }
+	
+  public setContrast(contrast: string): Graphics {
+    this.contrast = contrast;
+
+    return this;
+  }
+	
+  public setDither(dither: string): Graphics {
+    this.dither = dither;
+
+    return this;
+  }
+	
+  public setColors(colors: number): Graphics {
+    this.colors = colors;
+
+    return this;
+  }	
+  
+  public setColorspace(colorspace: string): Graphics {
+    this.colorspace = colorspace;
+
+    return this;
+  }
+  
+  public setContrastStretch(contrastStretch: number): Graphics {
+    this.contrastStretch = contrastStretch;
+
+    return this;
+  }
+  
+  public setFuzz(fuzz: number): Graphics {
+    this.fuzz = fuzz;
+
+    return this;
+  }
+  
+  public setOpaque(opaque: string): Graphics {
+    this.opaque = opaque;
+
+    return this;
+  }
+		
   public setGMClass(gmClass: string | boolean): Graphics {
     if (typeof gmClass === "boolean") {
       this.gm = gm.subClass({ imageMagick: gmClass });
@@ -178,14 +250,22 @@ export class Graphics {
 
   public getOptions(): Options {
     return {
-      quality:      this.quality,
-      format:       this.format,
-      width:        this.width,
-      height:       this.height,
-      density:      this.density,
-      savePath:     this.savePath,
-      saveFilename: this.saveFilename,
-      compression:  this.compression
+      quality:         this.quality,
+      format:          this.format,
+      width:           this.width,
+      height:          this.height,
+      density:         this.density,
+      savePath:        this.savePath,
+      saveFilename:    this.saveFilename,
+      compression:     this.compression,
+      depth:           this.depth,
+      contrast:	       this.contrast,
+      dither:          this.dither,
+      colors:          this.colors,
+      colorspace:      this.colorspace,
+      contrastStretch: this.contrastStretch,
+      fuzz:            this.fuzz,
+      opaque:          this.opaque
     };
   }
 }
