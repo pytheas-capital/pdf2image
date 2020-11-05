@@ -8,5 +8,12 @@ export const defaultOptions: Options = {
   density: 72,
   savePath: "./",
   saveFilename: "untitled",
-  compression: "jpeg"
+  compression: "jpeg",
+  depth: () => 32,
+  contrast: +100,
+  dither: true,
+  colors: 2,
+  colorspace: "GRAY",
+  fuzz: 25,
+  opaque: "#373737",
 };

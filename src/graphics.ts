@@ -30,7 +30,7 @@ export class Graphics {
 
   private colors = 2;
 
-  private colorspace = "gray";
+  private colorspace = "GRAY";
 
   private fuzz = 25;
 
