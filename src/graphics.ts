@@ -58,6 +58,7 @@ export class Graphics {
       .quality(this.quality)
       .compress(this.compression)
       .depth(this.depth)
+      .rotate("white", this.rotation)
       .contrast(this.contrast)
       .dither(this.dither)
       .colors(this.colors)
