@@ -10,9 +10,8 @@ export type Options = {
   depth?: () => number;
   contrast?: number;
   // dither?: boolean;
-  colors?: number;
-  colorspace?: string;
-  contrastStretch?: number;
+  // colors?: number;
+  // colorspace?: string;
   fuzz?: number;
   opaque?: string;
 };

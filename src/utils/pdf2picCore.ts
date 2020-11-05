@@ -61,8 +61,8 @@ function setGMOptions(gm: Graphics, options: Options): void {
     .setDepth(options.depth)
     .setContrast(options.contrast)
     // .setDither(options.dither)
-    .setColors(options.colors)
-    .setColorspace(options.colorspace)
+    // .setColors(options.colors)
+    // .setColorspace(options.colorspace)
     .setFuzz(options.fuzz)
     .setOpaque(options.opaque);
 }

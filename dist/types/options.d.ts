@@ -9,9 +9,6 @@ export declare type Options = {
     compression?: string;
     depth?: () => number;
     contrast?: number;
-    colors?: number;
-    colorspace?: string;
-    contrastStretch?: number;
     fuzz?: number;
     opaque?: string;
 };

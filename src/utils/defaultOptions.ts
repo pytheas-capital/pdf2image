@@ -12,8 +12,8 @@ export const defaultOptions: Options = {
   depth: () => 32,
   contrast: +100,
   // dither: true,
-  colors: 2,
-  colorspace: "GRAY",
+  // colors: 2,
+  // colorspace: "GRAY",
   fuzz: 25,
   opaque: "#373737",
 };

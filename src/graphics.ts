@@ -28,9 +28,9 @@ export class Graphics {
 
   // private dither = true;
 
-  private colors = 2;
+  // private colors = 2;
 
-  private colorspace = "GRAY";
+  // private colorspace = "GRAY";
 
   private fuzz = 25;
 
@@ -56,8 +56,8 @@ export class Graphics {
         .depth(this.depth)
         .contrast(this.contrast)
         // .dither(this.dither)
-        .colors(this.colors)
-        .colorspace(this.colorspace)
+        // .colors(this.colors)
+        // .colorspace(this.colorspace)
         .fuzz(this.fuzz, true)
         .opaque(this.opaque)
     );
@@ -210,17 +210,17 @@ export class Graphics {
   //   return this;
   // }
 
-  public setColors(colors: number): Graphics {
-    this.colors = colors;
+  // public setColors(colors: number): Graphics {
+  //   this.colors = colors;
 
-    return this;
-  }
+  //   return this;
+  // }
 
-  public setColorspace(colorspace: string): Graphics {
-    this.colorspace = colorspace;
+  // public setColorspace(colorspace: string): Graphics {
+  //   this.colorspace = colorspace;
 
-    return this;
-  }
+  //   return this;
+  // }
 
   public setFuzz(fuzz: number): Graphics {
     this.fuzz = fuzz;
@@ -265,8 +265,8 @@ export class Graphics {
       depth: this.depth,
       contrast: this.contrast,
       // dither: this.dither,
-      colors: this.colors,
-      colorspace: this.colorspace,
+      // colors: this.colors,
+      // colorspace: this.colorspace,
       fuzz: this.fuzz,
       opaque: this.opaque,
     };
