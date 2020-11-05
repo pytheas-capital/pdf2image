@@ -14,6 +14,7 @@ export declare class Graphics {
     private saveFilename;
     private compression;
     private depth;
+    private blur;
     private contrast;
     private dither;
     private colors;
@@ -34,6 +35,7 @@ export declare class Graphics {
     setSaveFilename(filename: string): Graphics;
     setCompression(compression: string): Graphics;
     setDepth(depth: () => number): Graphics;
+    setBlur(blur: number): Graphics;
     setContrast(contrast: number): Graphics;
     setDither(dither: boolean): Graphics;
     setColors(colors: number): Graphics;

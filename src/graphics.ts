@@ -24,6 +24,8 @@ export class Graphics {
 
   private depth = () => 32;
 
+  private blur = 0;
+
   private contrast = -100;
 
   private dither = true;
@@ -53,6 +55,7 @@ export class Graphics {
       .quality(this.quality)
       .compress(this.compression)
       .depth(this.depth)
+      .blur(this.blur)
       .contrast(this.contrast)
       .dither(this.dither)
       .colors(this.colors)
@@ -196,6 +199,12 @@ export class Graphics {
     return this;
   }
 
+  public setBlur(blur: number): Graphics {
+    this.blur = blur;
+
+    return this;
+  }
+
   public setContrast(contrast: number): Graphics {
     this.contrast = contrast;
 
@@ -261,6 +270,7 @@ export class Graphics {
       saveFilename: this.saveFilename,
       compression: this.compression,
       depth: this.depth,
+      blur: this.blur,
       contrast: this.contrast,
       dither: this.dither,
       colors: this.colors,

@@ -11,6 +11,7 @@ export const defaultOptions: Options = {
   compression: "jpeg",
   depth: () => 32,
   contrast: -100,
+  blur: 0,
   dither: true,
   colors: 2,
   colorspace: "GRAY",
