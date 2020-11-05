@@ -9,7 +9,7 @@ export type Options = {
   compression?: string;
   depth?: () => number;
   contrast?: number;
-  dither?: boolean;
+  // dither?: boolean;
   colors?: number;
   colorspace?: string;
   contrastStretch?: number;
