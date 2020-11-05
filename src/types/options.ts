@@ -7,4 +7,12 @@ export type Options = {
   savePath?: string;
   saveFilename?: string;
   compression?: string;
-}
+  depth?: () => number;
+  contrast?: number;
+  dither?: boolean;
+  colors?: number;
+  colorspace?: string;
+  contrastStretch?: number;
+  fuzz?: number;
+  opaque?: string;
+};

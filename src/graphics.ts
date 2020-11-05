@@ -21,23 +21,21 @@ export class Graphics {
   private saveFilename = "untitled";
 
   private compression = "jpeg";
-  
-  private depth = 32;
-  
-  private contrast = "-constrast";
-  
-  private dither = "+dither";
+
+  private depth = () => 32;
+
+  private contrast = +100;
+
+  private dither = true;
 
   private colors = 2;
-  
+
   private colorspace = "gray";
-  
-  private contrastStretch = 0;
-  
-  private fuzz = 25%;
-  
+
+  private fuzz = 0.25;
+
   private opaque = "#373737";
-  
+
   private gm: gm.SubClass = gm.subClass({ imageMagick: false });
 
   public generateValidFilename(page?: number): string {
@@ -59,63 +57,73 @@ export class Graphics {
       .dither(this.dither)
       .colors(this.colors)
       .colorspace(this.colorspace)
-      .contrastStretch(this.contrastStretch)
       .fuzz(this.fuzz)
-      .opaque(this.opaque)
+      .opaque(this.opaque);
   }
 
-  public toBase64(stream: fs.ReadStream, page?: number): Promise<ToBase64Response> {
+  public toBase64(
+    stream: fs.ReadStream,
+    page?: number
+  ): Promise<ToBase64Response> {
     const pageSetup = `${stream.path}[${page}]`;
 
     return new Promise((resolve, reject) => {
-      this.gmBaseCommand(stream, pageSetup).stream(this.format, (error, stdout) => {
-        let buffer = "";
-        
-        if (error) {
-          return reject(error);
-        }
+      this.gmBaseCommand(stream, pageSetup).stream(
+        this.format,
+        (error, stdout) => {
+          let buffer = "";
 
-        stdout
-          .on("data", (data) => {
-            buffer += data.toString("binary");
-          })
-          .on("end", () => {
-            const binString = Buffer.from(buffer, "binary");
-            const result = binString.toString("base64");
-
-            return resolve({
-              base64: result,
-              size: `${this.width}x${this.height}`,
-              page: page + 1
-            });
-          });
-      });
-    });
-  }
-
-  public writeImage(stream: fs.ReadStream, page?: number): Promise<WriteImageResponse> {
-    const output = this.generateValidFilename(page);
-    const pageSetup = `${stream.path}[${page}]`;
-
-    return new Promise((resolve, reject) => {
-      this.gmBaseCommand(stream, pageSetup)
-        .write(output, (error) => {
           if (error) {
             return reject(error);
           }
 
-          return resolve({
-            name: path.basename(output),
-            size: `${this.width}x${this.height}`,
-            fileSize: fs.statSync(output).size / 1000.0,
-            path: output,
-            page: page + 1
-          });
-        });
+          stdout
+            .on("data", (data) => {
+              buffer += data.toString("binary");
+            })
+            .on("end", () => {
+              const binString = Buffer.from(buffer, "binary");
+              const result = binString.toString("base64");
+
+              return resolve({
+                base64: result,
+                size: `${this.width}x${this.height}`,
+                page: page + 1,
+              });
+            });
+        }
+      );
     });
   }
 
-  public identify(filepath: string | fs.ReadStream, argument?: string): Promise<gm.ImageInfo | string> {
+  public writeImage(
+    stream: fs.ReadStream,
+    page?: number
+  ): Promise<WriteImageResponse> {
+    const output = this.generateValidFilename(page);
+    const pageSetup = `${stream.path}[${page}]`;
+
+    return new Promise((resolve, reject) => {
+      this.gmBaseCommand(stream, pageSetup).write(output, (error) => {
+        if (error) {
+          return reject(error);
+        }
+
+        return resolve({
+          name: path.basename(output),
+          size: `${this.width}x${this.height}`,
+          fileSize: fs.statSync(output).size / 1000.0,
+          path: output,
+          page: page + 1,
+        });
+      });
+    });
+  }
+
+  public identify(
+    filepath: string | fs.ReadStream,
+    argument?: string
+  ): Promise<gm.ImageInfo | string> {
     const image = this.gm(filepath as string);
 
     return new Promise((resolve, reject) => {
@@ -134,7 +142,7 @@ export class Graphics {
           }
 
           return resolve(data);
-        })
+        });
       }
     });
   }
@@ -182,54 +190,48 @@ export class Graphics {
     return this;
   }
 
-  public setDepth(depth: number): Graphics {
+  public setDepth(depth: () => number): Graphics {
     this.depth = depth;
 
     return this;
   }
-	
-  public setContrast(contrast: string): Graphics {
+
+  public setContrast(contrast: number): Graphics {
     this.contrast = contrast;
 
     return this;
   }
-	
-  public setDither(dither: string): Graphics {
+
+  public setDither(dither: boolean): Graphics {
     this.dither = dither;
 
     return this;
   }
-	
+
   public setColors(colors: number): Graphics {
     this.colors = colors;
 
     return this;
-  }	
-  
+  }
+
   public setColorspace(colorspace: string): Graphics {
     this.colorspace = colorspace;
 
     return this;
   }
-  
-  public setContrastStretch(contrastStretch: number): Graphics {
-    this.contrastStretch = contrastStretch;
 
-    return this;
-  }
-  
   public setFuzz(fuzz: number): Graphics {
     this.fuzz = fuzz;
 
     return this;
   }
-  
+
   public setOpaque(opaque: string): Graphics {
     this.opaque = opaque;
 
     return this;
   }
-		
+
   public setGMClass(gmClass: string | boolean): Graphics {
     if (typeof gmClass === "boolean") {
       this.gm = gm.subClass({ imageMagick: gmClass });
@@ -250,22 +252,21 @@ export class Graphics {
 
   public getOptions(): Options {
     return {
-      quality:         this.quality,
-      format:          this.format,
-      width:           this.width,
-      height:          this.height,
-      density:         this.density,
-      savePath:        this.savePath,
-      saveFilename:    this.saveFilename,
-      compression:     this.compression,
-      depth:           this.depth,
-      contrast:	       this.contrast,
-      dither:          this.dither,
-      colors:          this.colors,
-      colorspace:      this.colorspace,
-      contrastStretch: this.contrastStretch,
-      fuzz:            this.fuzz,
-      opaque:          this.opaque
+      quality: this.quality,
+      format: this.format,
+      width: this.width,
+      height: this.height,
+      density: this.density,
+      savePath: this.savePath,
+      saveFilename: this.saveFilename,
+      compression: this.compression,
+      depth: this.depth,
+      contrast: this.contrast,
+      dither: this.dither,
+      colors: this.colors,
+      colorspace: this.colorspace,
+      fuzz: this.fuzz,
+      opaque: this.opaque,
     };
   }
 }
