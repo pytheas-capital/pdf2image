@@ -10,10 +10,10 @@ export const defaultOptions: Options = {
   saveFilename: "untitled",
   compression: "jpeg",
   depth: () => 32,
-  // contrast: -100,
+  contrast: -100,
   // dither: true,
   // colors: 2,
   // colorspace: "GRAY",
-  // fuzz: 25,
-  // opaque: "#373737",
+  fuzz: 25,
+  opaque: "#373737",
 };

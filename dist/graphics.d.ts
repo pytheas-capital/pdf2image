@@ -14,6 +14,9 @@ export declare class Graphics {
     private saveFilename;
     private compression;
     private depth;
+    private contrast;
+    private fuzz;
+    private opaque;
     private gm;
     generateValidFilename(page?: number): string;
     gmBaseCommand(stream: fs.ReadStream, filename: string): gm.State;
@@ -28,6 +31,9 @@ export declare class Graphics {
     setSaveFilename(filename: string): Graphics;
     setCompression(compression: string): Graphics;
     setDepth(depth: () => number): Graphics;
+    setContrast(contrast: number): Graphics;
+    setFuzz(fuzz: number): Graphics;
+    setOpaque(opaque: string): Graphics;
     setGMClass(gmClass: string | boolean): Graphics;
     getOptions(): Options;
 }

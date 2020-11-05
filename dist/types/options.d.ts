@@ -8,4 +8,7 @@ export declare type Options = {
     saveFilename?: string;
     compression?: string;
     depth?: () => number;
+    contrast?: number;
+    fuzz?: number;
+    opaque?: string;
 };
