@@ -10,7 +10,6 @@ export const defaultOptions: Options = {
   savePath: "./",
   saveFilename: "untitled",
   compression: "jpeg",
-  rotation: 0,
   depth: () => 32,
   contrast: -100,
   dither: true,

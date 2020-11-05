@@ -28,8 +28,6 @@ export class Graphics {
 
   private contrast = -100;
 
-  private rotation = 0;
-
   private dither = true;
 
   private colors = 2;
@@ -58,7 +56,6 @@ export class Graphics {
       .quality(this.quality)
       .compress(this.compression)
       .depth(this.depth)
-      .rotate("white", this.rotation)
       .contrast(this.contrast)
       .dither(this.dither)
       .colors(this.colors)
@@ -178,12 +175,6 @@ export class Graphics {
     return this;
   }
 
-  public setRotation(rotation: number): Graphics {
-    this.rotation = rotation;
-
-    return this;
-  }
-
   public setUnits(units: string): Graphics {
     this.units = units;
 
@@ -279,7 +270,6 @@ export class Graphics {
       savePath: this.savePath,
       saveFilename: this.saveFilename,
       compression: this.compression,
-      rotation: this.rotation,
       depth: this.depth,
       contrast: this.contrast,
       dither: this.dither,
