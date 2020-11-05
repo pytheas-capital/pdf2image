@@ -24,7 +24,7 @@ export class Graphics {
 
   private depth = () => 32;
 
-  private contrast = -100;
+  // private contrast = -100;
 
   // private dither = true;
 
@@ -32,9 +32,9 @@ export class Graphics {
 
   // private colorspace = "GRAY";
 
-  private fuzz = 25;
+  // private fuzz = 25;
 
-  private opaque = "#373737";
+  // private opaque = "#373737";
 
   private gm: gm.SubClass = gm.subClass({ imageMagick: false });
 
@@ -47,20 +47,18 @@ export class Graphics {
   }
 
   public gmBaseCommand(stream: fs.ReadStream, filename: string): gm.State {
-    return (
-      this.gm(stream, filename)
-        .density(this.density, this.density)
-        .resize(this.width, this.height, "!")
-        .quality(this.quality)
-        .compress(this.compression)
-        .depth(this.depth)
-        .contrast(this.contrast)
-        // .dither(this.dither)
-        // .colors(this.colors)
-        // .colorspace(this.colorspace)
-        .fuzz(this.fuzz, true)
-        .opaque(this.opaque)
-    );
+    return this.gm(stream, filename)
+      .density(this.density, this.density)
+      .resize(this.width, this.height, "!")
+      .quality(this.quality)
+      .compress(this.compression)
+      .depth(this.depth);
+    // .contrast(this.contrast)
+    // .dither(this.dither)
+    // .colors(this.colors)
+    // .colorspace(this.colorspace)
+    // .fuzz(this.fuzz, true)
+    // .opaque(this.opaque)
   }
 
   public toBase64(
@@ -198,11 +196,11 @@ export class Graphics {
     return this;
   }
 
-  public setContrast(contrast: number): Graphics {
-    this.contrast = contrast;
+  // public setContrast(contrast: number): Graphics {
+  //   this.contrast = contrast;
 
-    return this;
-  }
+  //   return this;
+  // }
 
   // public setDither(dither: boolean): Graphics {
   //   this.dither = dither;
@@ -222,17 +220,17 @@ export class Graphics {
   //   return this;
   // }
 
-  public setFuzz(fuzz: number): Graphics {
-    this.fuzz = fuzz;
+  // public setFuzz(fuzz: number): Graphics {
+  //   this.fuzz = fuzz;
 
-    return this;
-  }
+  //   return this;
+  // }
 
-  public setOpaque(opaque: string): Graphics {
-    this.opaque = opaque;
+  // public setOpaque(opaque: string): Graphics {
+  //   this.opaque = opaque;
 
-    return this;
-  }
+  //   return this;
+  // }
 
   public setGMClass(gmClass: string | boolean): Graphics {
     if (typeof gmClass === "boolean") {
@@ -263,12 +261,12 @@ export class Graphics {
       saveFilename: this.saveFilename,
       compression: this.compression,
       depth: this.depth,
-      contrast: this.contrast,
+      // contrast: this.contrast,
       // dither: this.dither,
       // colors: this.colors,
       // colorspace: this.colorspace,
-      fuzz: this.fuzz,
-      opaque: this.opaque,
+      // fuzz: this.fuzz,
+      // opaque: this.opaque,
     };
   }
 }

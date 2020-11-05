@@ -8,10 +8,10 @@ export type Options = {
   saveFilename?: string;
   compression?: string;
   depth?: () => number;
-  contrast?: number;
+  // contrast?: number;
   // dither?: boolean;
   // colors?: number;
   // colorspace?: string;
-  fuzz?: number;
-  opaque?: string;
+  // fuzz?: number;
+  // opaque?: string;
 };
