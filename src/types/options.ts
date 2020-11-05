@@ -8,7 +8,6 @@ export type Options = {
   saveFilename?: string;
   compression?: string;
   depth?: () => number;
-  blur?: number;
   contrast?: number;
   dither?: boolean;
   colors?: number;

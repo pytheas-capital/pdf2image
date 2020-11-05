@@ -59,7 +59,6 @@ function setGMOptions(gm: Graphics, options: Options): void {
     .setSaveFilename(options.saveFilename)
     .setCompression(options.compression)
     .setDepth(options.depth)
-    .setBlur(options.blur)
     .setContrast(options.contrast)
     .setDither(options.dither)
     .setColors(options.colors)
