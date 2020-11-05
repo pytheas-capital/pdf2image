@@ -8,7 +8,6 @@ export declare type Options = {
     savePath?: string;
     saveFilename?: string;
     compression?: string;
-    rotation?: number;
     depth?: () => number;
     contrast?: number;
     dither?: boolean;
