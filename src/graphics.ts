@@ -24,7 +24,7 @@ export class Graphics {
 
   private depth = () => 32;
 
-  private contrast = +100;
+  private contrast = -100;
 
   // private dither = true;
 
