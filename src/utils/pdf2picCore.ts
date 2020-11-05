@@ -7,7 +7,11 @@ import { bulkConvert } from "@module/utils/bulk/bulkConvert";
 import { WriteImageResponse } from "@module/types/writeImageResponse";
 import { ToBase64Response } from "@module/types/toBase64Response";
 
-export function pdf2picCore(source: string, filePath: string | Buffer, options = defaultOptions): Convert {
+export function pdf2picCore(
+  source: string,
+  filePath: string | Buffer,
+  options = defaultOptions
+): Convert {
   const gm = new Graphics();
 
   options = { ...defaultOptions, ...options };
@@ -20,15 +24,18 @@ export function pdf2picCore(source: string, filePath: string | Buffer, options =
     const stream = convertToStream(source, filePath);
 
     if (!!toBase64) {
-      return gm.toBase64(stream, (page - 1));
+      return gm.toBase64(stream, page - 1);
     }
 
-    return gm.writeImage(stream, (page - 1));
+    return gm.writeImage(stream, page - 1);
   };
 
-  convert.bulk = (pages: number | number[], toBase64 = false): Promise<WriteImageResponse[] | ToBase64Response[]> => {
+  convert.bulk = (
+    pages: number | number[],
+    toBase64 = false
+  ): Promise<WriteImageResponse[] | ToBase64Response[]> => {
     return bulkConvert(gm, source, filePath, pages, toBase64);
-  }
+  };
 
   convert.setOptions = (): void => setGMOptions(gm, options);
 
@@ -45,12 +52,17 @@ export function pdf2picCore(source: string, filePath: string | Buffer, options =
 
 function setGMOptions(gm: Graphics, options: Options): void {
   gm.setQuality(options.quality)
-  .setFormat(options.format)
-  .setSize(options.width, options.height)
-  .setDensity(options.density)
-  .setSavePath(options.savePath)
-  .setSaveFilename(options.saveFilename)
-  .setCompression(options.compression)
-
-  return;
+    .setFormat(options.format)
+    .setSize(options.width, options.height)
+    .setDensity(options.density)
+    .setSavePath(options.savePath)
+    .setSaveFilename(options.saveFilename)
+    .setCompression(options.compression)
+    .setDepth(options.depth)
+    .setContrast(options.contrast)
+    .setDither(options.dither)
+    .setColors(options.colors)
+    .setColorspace(options.colorspace)
+    .setFuzz(options.fuzz)
+    .setOpaque(options.opaque);
 }
