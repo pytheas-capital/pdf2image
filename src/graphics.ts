@@ -32,7 +32,7 @@ export class Graphics {
 
   private colorspace = "gray";
 
-  private fuzz = 0.25;
+  private fuzz = 25;
 
   private opaque = "#373737";
 
@@ -57,7 +57,7 @@ export class Graphics {
       .dither(this.dither)
       .colors(this.colors)
       .colorspace(this.colorspace)
-      .fuzz(this.fuzz)
+      .fuzz(this.fuzz, true)
       .opaque(this.opaque);
   }
 
