@@ -55,6 +55,7 @@ function setGMOptions(gm: Graphics, options: Options): void {
     .setFormat(options.format)
     .setSize(options.width, options.height)
     .setDensity(options.density)
+    .setUnits(options.units)
     .setSavePath(options.savePath)
     .setSaveFilename(options.saveFilename)
     .setCompression(options.compression)

@@ -4,6 +4,7 @@ export type Options = {
   width?: number;
   height?: number;
   density?: number;
+  units?: string;
   savePath?: string;
   saveFilename?: string;
   compression?: string;

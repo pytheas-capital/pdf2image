@@ -10,6 +10,7 @@ export declare class Graphics {
     private width;
     private height;
     private density;
+    private units;
     private savePath;
     private saveFilename;
     private compression;
@@ -30,6 +31,7 @@ export declare class Graphics {
     setFormat(format: string): Graphics;
     setSize(width: number, height?: number): Graphics;
     setDensity(density: number): Graphics;
+    setUnits(units: string): Graphics;
     setSavePath(savePath: string): Graphics;
     setSaveFilename(filename: string): Graphics;
     setCompression(compression: string): Graphics;

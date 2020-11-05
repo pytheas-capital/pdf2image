@@ -14,7 +14,9 @@ export class Graphics {
 
   private height = 512;
 
-  private density = 72;
+  private density = 300;
+
+  private units = "PixelsPerInch";
 
   private savePath = "./";
 
@@ -49,6 +51,7 @@ export class Graphics {
   public gmBaseCommand(stream: fs.ReadStream, filename: string): gm.State {
     return this.gm(stream, filename)
       .density(this.density, this.density)
+      .units(this.units)
       .resize(this.width, this.height, "!")
       .quality(this.quality)
       .compress(this.compression)
@@ -172,6 +175,12 @@ export class Graphics {
     return this;
   }
 
+  public setUnits(units: string): Graphics {
+    this.units = units;
+
+    return this;
+  }
+
   public setSavePath(savePath: string): Graphics {
     this.savePath = savePath;
 
@@ -257,6 +266,7 @@ export class Graphics {
       width: this.width,
       height: this.height,
       density: this.density,
+      units: this.units,
       savePath: this.savePath,
       saveFilename: this.saveFilename,
       compression: this.compression,
