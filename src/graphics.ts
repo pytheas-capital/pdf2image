@@ -26,11 +26,11 @@ export class Graphics {
 
   private contrast = -100;
 
-  // private dither = true;
+  private dither = true;
 
-  // private colors = 2;
+  private colors = 2;
 
-  // private colorspace = "GRAY";
+  private colorspace = "GRAY";
 
   private fuzz = 25;
 
@@ -47,20 +47,18 @@ export class Graphics {
   }
 
   public gmBaseCommand(stream: fs.ReadStream, filename: string): gm.State {
-    return (
-      this.gm(stream, filename)
-        .density(this.density, this.density)
-        .resize(this.width, this.height, "!")
-        .quality(this.quality)
-        .compress(this.compression)
-        .depth(this.depth)
-        .contrast(this.contrast)
-        // .dither(this.dither)
-        // .colors(this.colors)
-        // .colorspace(this.colorspace)
-        .fuzz(this.fuzz, true)
-        .opaque(this.opaque)
-    );
+    return this.gm(stream, filename)
+      .density(this.density, this.density)
+      .resize(this.width, this.height, "!")
+      .quality(this.quality)
+      .compress(this.compression)
+      .depth(this.depth)
+      .contrast(this.contrast)
+      .dither(this.dither)
+      .colors(this.colors)
+      .colorspace(this.colorspace)
+      .fuzz(this.fuzz, true)
+      .opaque(this.opaque);
   }
 
   public toBase64(
@@ -204,23 +202,23 @@ export class Graphics {
     return this;
   }
 
-  // public setDither(dither: boolean): Graphics {
-  //   this.dither = dither;
+  public setDither(dither: boolean): Graphics {
+    this.dither = dither;
 
-  //   return this;
-  // }
+    return this;
+  }
 
-  // public setColors(colors: number): Graphics {
-  //   this.colors = colors;
+  public setColors(colors: number): Graphics {
+    this.colors = colors;
 
-  //   return this;
-  // }
+    return this;
+  }
 
-  // public setColorspace(colorspace: string): Graphics {
-  //   this.colorspace = colorspace;
+  public setColorspace(colorspace: string): Graphics {
+    this.colorspace = colorspace;
 
-  //   return this;
-  // }
+    return this;
+  }
 
   public setFuzz(fuzz: number): Graphics {
     this.fuzz = fuzz;
@@ -264,9 +262,9 @@ export class Graphics {
       compression: this.compression,
       depth: this.depth,
       contrast: this.contrast,
-      // dither: this.dither,
-      // colors: this.colors,
-      // colorspace: this.colorspace,
+      dither: this.dither,
+      colors: this.colors,
+      colorspace: this.colorspace,
       fuzz: this.fuzz,
       opaque: this.opaque,
     };

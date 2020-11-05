@@ -9,9 +9,9 @@ export type Options = {
   compression?: string;
   depth?: () => number;
   contrast?: number;
-  // dither?: boolean;
-  // colors?: number;
-  // colorspace?: string;
+  dither?: boolean;
+  colors?: number;
+  colorspace?: string;
   fuzz?: number;
   opaque?: string;
 };

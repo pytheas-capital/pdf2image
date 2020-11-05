@@ -60,9 +60,9 @@ function setGMOptions(gm: Graphics, options: Options): void {
     .setCompression(options.compression)
     .setDepth(options.depth)
     .setContrast(options.contrast)
-    // .setDither(options.dither)
-    // .setColors(options.colors)
-    // .setColorspace(options.colorspace)
+    .setDither(options.dither)
+    .setColors(options.colors)
+    .setColorspace(options.colorspace)
     .setFuzz(options.fuzz)
     .setOpaque(options.opaque);
 }

@@ -11,9 +11,9 @@ export const defaultOptions: Options = {
   compression: "jpeg",
   depth: () => 32,
   contrast: -100,
-  // dither: true,
-  // colors: 2,
-  // colorspace: "GRAY",
+  dither: true,
+  colors: 2,
+  colorspace: "GRAY",
   fuzz: 25,
   opaque: "#373737",
 };

@@ -15,6 +15,9 @@ export declare class Graphics {
     private compression;
     private depth;
     private contrast;
+    private dither;
+    private colors;
+    private colorspace;
     private fuzz;
     private opaque;
     private gm;
@@ -32,6 +35,9 @@ export declare class Graphics {
     setCompression(compression: string): Graphics;
     setDepth(depth: () => number): Graphics;
     setContrast(contrast: number): Graphics;
+    setDither(dither: boolean): Graphics;
+    setColors(colors: number): Graphics;
+    setColorspace(colorspace: string): Graphics;
     setFuzz(fuzz: number): Graphics;
     setOpaque(opaque: string): Graphics;
     setGMClass(gmClass: string | boolean): Graphics;
