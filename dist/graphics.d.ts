@@ -16,6 +16,7 @@ export declare class Graphics {
     private compression;
     private depth;
     private contrast;
+    private rotation;
     private dither;
     private colors;
     private colorspace;
@@ -31,6 +32,7 @@ export declare class Graphics {
     setFormat(format: string): Graphics;
     setSize(width: number, height?: number): Graphics;
     setDensity(density: number): Graphics;
+    setRotation(rotation: number): Graphics;
     setUnits(units: string): Graphics;
     setSavePath(savePath: string): Graphics;
     setSaveFilename(filename: string): Graphics;
